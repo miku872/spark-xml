@@ -23,6 +23,10 @@ import org.apache.spark.annotation.Experimental
 import org.apache.spark.sql.types._
 import org.apache.ws.commons.schema._
 import org.apache.ws.commons.schema.constants.Constants
+import org.apache.ws.commons.schema.utils.XmlSchemaNamed
+
+import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * Utility to generate a Spark schema from an XSD. Not all XSD schemas are simple tabular schemas,
@@ -30,6 +34,7 @@ import org.apache.ws.commons.schema.constants.Constants
  */
 @Experimental
 object XSDToSchema {
+  val schemaNameToStructFieldMap = collection.mutable.Map[String, StructField]()
 
   /**
    * Reads a schema from an XSD file.
@@ -384,3 +389,4 @@ object XSDToSchema {
   }
 
 }
+
